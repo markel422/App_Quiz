@@ -2,7 +2,7 @@
     <string name="app_name">w2d5_quiz1</string>
     <string name="lbl_hint_title">Update/Delete by title:</string>
     <string name="lbl_btn_save_note">SAVE NOTE</string>
-    <string name="lbl_btn_read_all_notes">REAL ALL NOTES</string>
+    <string name="lbl_btn_read_all_notes">READ ALL NOTES</string>
     <string name="lbl_btn_update_note">UPDATE NOTE</string>
     <string name="lbl_btn_delete_note">DELETE NOTE</string>
     <string name="lbl_hint_note_title">Note title:</string>
