@@ -12,6 +12,7 @@
         android:text="W2D5 TEST 1 - UPDATE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
     <EditText
         android:id="@+id/et_title"
         android:hint="@string/lbl_hint_note_title"

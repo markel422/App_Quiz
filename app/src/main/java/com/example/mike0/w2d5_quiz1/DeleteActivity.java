@@ -35,6 +35,11 @@ public class DeleteActivity extends AppCompatActivity implements View.OnClickLis
         deleteBtn.setOnClickListener(this);
 
         resultTV = (TextView) findViewById(R.id.tv_result);
+
+        Intent intent = getIntent();
+        String titleValue = intent.getStringExtra("deleteData");
+
+        resultTV.setText("Delete Title? " + titleValue);
     }
 
     private void deleteRecord() {
@@ -53,6 +58,7 @@ public class DeleteActivity extends AppCompatActivity implements View.OnClickLis
         if (deleted > 0) {
             Log.d(TAG, "Record deleted.");
             Toast.makeText(this, "Record deleted.", Toast.LENGTH_SHORT).show();
+            resultTV.setText("Title: " + titleValue + " Deleted!");
         } else {
             Log.d(TAG, "Record not deleted.");
             Toast.makeText(this, "Record not deleted.", Toast.LENGTH_SHORT).show();

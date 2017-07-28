@@ -75,6 +75,7 @@ public class SaveActivity extends AppCompatActivity implements View.OnClickListe
             String titleValue, contentValue;
             Log.d(TAG, "Data Saved.");
             Toast.makeText(this, "Data saved.", Toast.LENGTH_SHORT).show();
+            resultTV.setText("Title: " + title + " Content: " + content + " Saved!");
         } else  {
             Log.d(TAG, "Data Not Saved.");
             Toast.makeText(this, "Data Not Saved.", Toast.LENGTH_SHORT).show();

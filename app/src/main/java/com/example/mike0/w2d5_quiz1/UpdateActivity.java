@@ -2,6 +2,7 @@ package com.example.mike0.w2d5_quiz1;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,6 +34,9 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
+        helper = new DBHelper(this);
+        database = helper.getWritableDatabase();
+
         title = (EditText) findViewById(R.id.et_title);
         content = (EditText) findViewById(R.id.et_content);
 
@@ -41,6 +45,8 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
 
         resultTV = (TextView) findViewById(R.id.tv_result);
 
+        resultTV.setText("Title does not exist or typed correctly at Home Page. Please go back and enter an existing Title to be updated.");
+
         Intent intent = getIntent();
 
         if (intent != null) {
@@ -48,18 +54,43 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
 
             titleValue = intent.getStringExtra("updateData");
 
-            title.setText(titleValue);
+            String[] projection = {
+                    FeedEntry.COLUMN_NAME_TITLE,
+                    FeedEntry.COLUMN_NAME_CONTENT
+            };
+
+            String selection = FeedEntry.COLUMN_NAME_TITLE + " = ?";
+            String[] selectionArgs = {
+                    titleValue
+            };
+
+            Cursor cursor = database.query(
+                    FeedEntry.TABLE_NAME,
+                    projection,
+                    selection,
+                    selectionArgs,
+                    null,
+                    null,
+                    null
+                    );
+
+            while (cursor.moveToNext()) {
+                String entryTitle = cursor.getString(cursor.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_TITLE));
+                String entryContent = cursor.getString(cursor.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_CONTENT));
+
+                resultTV.setText("Old Title: " + entryTitle + " Old Content: " + entryContent);
+            }
         }
     }
 
     private void updateRecord() {
         Intent intent = getIntent();
-        String titleValue;
+        String oldTitleValue;
 
-        titleValue = intent.getStringExtra("updateData")
+        oldTitleValue = intent.getStringExtra("updateData");
 
         String newTitleValue = title.getText().toString();
-        String contentValue = title.getText().toString();
+        String contentValue = content.getText().toString();
 
         ContentValues values = new ContentValues();
         values.put(FeedEntry.COLUMN_NAME_TITLE, newTitleValue);
@@ -67,7 +98,7 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
 
         String selection = FeedEntry.COLUMN_NAME_TITLE + " LIKE ?";
         String[] selectionArgs = {
-                titleValue
+                oldTitleValue
         };
 
         int count = database.update(

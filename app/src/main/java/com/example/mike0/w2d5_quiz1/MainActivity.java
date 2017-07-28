@@ -9,8 +9,6 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String MAIN_ACTIVITY_EXTRA = "com.example.mike0.w2d5_quiz1.MAIN_ACTIVITY_EXTRA";
-
     EditText title;
 
     Button saveBtn, readAllBtn, updateBtn, deleteBtn;

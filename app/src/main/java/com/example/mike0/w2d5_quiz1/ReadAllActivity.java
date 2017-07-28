@@ -36,20 +36,11 @@ public class ReadAllActivity extends AppCompatActivity implements View.OnClickLi
 
         resultTV = (TextView) findViewById(R.id.tv_result);
 
-        /*
-        Intent intent = getIntent();
-
-        if (intent != null) {
-            String titleValue;
-
-            titleValue = intent.getStringExtra("saveData");
-
-            resultTV.setText(titleValue);
-        }
-        */
+        resultTV.setText("Press Button to display results!");
     }
 
     private void readRecord() {
+        resultTV.setText("");
         String[] projection = {
                 FeedEntry.COLUMN_NAME_TITLE,
                 FeedEntry.COLUMN_NAME_CONTENT

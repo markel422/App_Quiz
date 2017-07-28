@@ -8,6 +8,6 @@
     <string name="lbl_hint_note_title">Note title:</string>
     <string name="lbl_hint_note_content">Note content:</string>
     <string name="lbl_btn_save_data">SAVE DATA</string>
-    <string name="lbl_result">%1$s %2$s</string>
+    <string name="lbl_result">Results: %1$s %2$s \n</string>
     <string name="lbl_placeholder_result">Result:</string>
 </resources>
